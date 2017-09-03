@@ -12,10 +12,12 @@
 
 @end
 
+#ifdef SRCROOT
 #if TARGET_OS_SIMULATOR
 @interface DDFileLogger (Terminal)
 
 - (instancetype)initForTerminal;
 
 @end
+#endif
 #endif

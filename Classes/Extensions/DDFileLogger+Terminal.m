@@ -16,10 +16,11 @@ static NSString *const kTerminalLogFilePrefix = @"tail-f";
 
 @implementation DDLogFileManagerTerminal
 
+#ifdef SRCROOT
 #if TARGET_OS_SIMULATOR
 - (instancetype)init {
     #define MACRO_NAME(key) #key
-    #define MACRO_VALUE(key)  MACRO_NAME(key)
+    #define MACRO_VALUE(key) MACRO_NAME(key)
     NSString *filePath = [NSString stringWithFormat:@"%s", MACRO_VALUE(SRCROOT)];
     NSURL *url = [[[NSURL URLWithString:filePath] URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"Log" isDirectory:YES];
     
@@ -27,6 +28,7 @@ static NSString *const kTerminalLogFilePrefix = @"tail-f";
 }
 #else
     #undef SRCROOT
+#endif
 #endif
 
 - (NSString *)newLogFileName {
@@ -45,6 +47,7 @@ static NSString *const kTerminalLogFilePrefix = @"tail-f";
 
 @end
 
+#ifdef SRCROOT
 #if TARGET_OS_SIMULATOR
 @implementation DDFileLogger (Terminal)
 
@@ -61,4 +64,5 @@ static NSString *const kTerminalLogFilePrefix = @"tail-f";
 }
 
 @end
+#endif
 #endif
