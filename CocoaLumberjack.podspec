@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |ss|
     ss.source_files         = 'Classes/CocoaLumberjack.h', 'Classes/DD*.{h,m}', 'Classes/Extensions/*.{h,m}', 'Classes/CLI/*.{h,m}'
     ss.private_header_files = 'Classes/DD*Internal.{h}'
+    ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'SRCROOT=$(SRCROOT)' }
   end
 
   s.subspec 'Swift' do |ss|
